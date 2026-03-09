@@ -132,6 +132,8 @@ function initThree() {
 }
 
 /* ─── CURSOR ─────────────────────────────────────────────────────── */
+let cursorElements = null;
+
 function initCursor() {
   // Skip custom cursor on touch devices
   if (isTouchDevice) {
@@ -141,6 +143,7 @@ function initCursor() {
   const dot  = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
   if (!dot || !ring) return;
+  cursorElements = { dot, ring };
   let rx=0, ry=0, cx=0, cy=0;
   document.addEventListener('mousemove', e => { cx=e.clientX; cy=e.clientY; dot.style.left=cx+'px'; dot.style.top=cy+'px'; });
   (function lerp() {
@@ -152,6 +155,22 @@ function initCursor() {
     el.addEventListener('mouseenter',()=>ring.classList.add('hovered'));
     el.addEventListener('mouseleave',()=>ring.classList.remove('hovered'));
   });
+}
+
+function disableCursor() {
+  if (cursorElements) {
+    cursorElements.dot.style.display = 'none';
+    cursorElements.ring.style.display = 'none';
+  }
+  document.body.style.cursor = 'auto';
+}
+
+function enableCursor() {
+  if (cursorElements && !isTouchDevice) {
+    cursorElements.dot.style.display = '';
+    cursorElements.ring.style.display = '';
+    document.body.style.cursor = 'none';
+  }
 }
 
 /* ─── SCROLL REVEAL ──────────────────────────────────────────────── */
@@ -635,11 +654,15 @@ function openSite(key) {
   siteTitle.textContent = s.title;
   siteOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
+  // Disable custom cursor when viewing example sites in iframe
+  disableCursor();
 }
 
 function closeSite() {
   siteOverlay.classList.remove('open');
   document.body.style.overflow = '';
+  // Re-enable custom cursor when closing example sites
+  enableCursor();
   setTimeout(()=>{ siteFrame.src=''; },400);
 }
 
