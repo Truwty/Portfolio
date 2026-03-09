@@ -644,7 +644,8 @@ const siteTitle   = document.getElementById('siteModalTitle');
 const siteClose   = document.getElementById('siteClose');
 
 const siteMap = {
-  band:   { file:'https://truwty.github.io/Scratch-Cat/', title:'Scratch Cat — Alt-Rock Band', external:true }
+  band:   { file:'https://truwty.github.io/Scratch-Cat/', title:'Scratch Cat — Alt-Rock Band', external:true },
+  uniform: { file:'https://truwty.github.io/Unknowns-Quatermaster-Site/index.html', title:'Uniform Review & Regulations', external:true }
 };
 
 function openSite(key) {
