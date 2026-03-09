@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumina — Premium Hair Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#faf8f5;--surface:#f2ede6;--dark:#1a1612;--dark2:#2d2720;
+  --gold:#b8935a;--gold2:#d4aa70;--gold-light:#f0d9b5;
+  --text:#2d2720;--muted:#8a7a6a;--light:#e8e0d5;
+  --ff-head:'Cormorant Garamond',serif;
+  --ff-body:'Jost',sans-serif;
+  --ff-mono:'DM Mono',monospace;
+}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--ff-body)}
+a{color:inherit;text-decoration:none}
+button{border:none;font-family:inherit;cursor:pointer}
+
+/* NAV */
+.site-nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;height:60px;
+  background:rgba(250,248,245,0.97);
+  border-bottom:1px solid var(--light);
+  backdrop-filter:blur(10px);
+}
+.nav-logo{
+  font-family:var(--ff-head);font-size:20px;font-weight:300;
+  letter-spacing:4px;color:var(--dark);
+  text-transform:uppercase;
+}
+.nav-logo span{color:var(--gold)}
+.nav-tabs{display:flex;gap:0;overflow-x:auto}
+.nav-tab{
+  padding:8px 14px;font-family:var(--ff-body);font-size:11px;
+  font-weight:500;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);background:none;border:none;
+  border-bottom:2px solid transparent;
+  transition:all 0.3s;cursor:pointer;white-space:nowrap
+}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.nav-cta{
+  padding:10px 20px;background:var(--dark);color:#fff;
+  font-family:var(--ff-body);font-size:11px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;
+  transition:all 0.3s;
+}
+.nav-cta:hover{background:var(--gold)}
+
+/* PAGES */
+.page{
+  position:absolute;top:60px;left:0;right:0;bottom:0;
+  overflow-y:auto;
+  opacity:0;pointer-events:none;transition:opacity 0.4s;
+}
+.page.active{opacity:1;pointer-events:all}
+.page::-webkit-scrollbar{width:3px}
+.page::-webkit-scrollbar-track{background:var(--bg)}
+.page::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* ========== HOME ========== */
+.home-hero{
+  height:calc(100vh - 60px);
+  display:grid;grid-template-columns:1fr;
+  overflow:hidden;
+}
+.hero-left{
+  padding:40px 24px;
+  display:flex;flex-direction:column;justify-content:center;
+  background:var(--dark);
+  position:relative;overflow:hidden;
+}
+.hero-left::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:250px;height:250px;border-radius:50%;
+  background:radial-gradient(circle,rgba(184,147,90,0.12),transparent 70%);
+}
+.hero-eyebrow{
+  font-family:var(--ff-mono);font-size:10px;letter-spacing:4px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:16px;
+}
+.hero-title{
+  font-family:var(--ff-head);font-size:clamp(36px,5vw,56px);
+  font-weight:300;font-style:italic;
+  color:#fff;line-height:1.05;margin-bottom:16px;
+}
+.hero-title strong{font-weight:600;font-style:normal;color:var(--gold2)}
+.hero-desc{
+  color:rgba(255,255,255,0.5);font-size:14px;font-weight:300;
+  line-height:1.7;margin-bottom:24px;max-width:100%;
+}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-gold{
+  padding:12px 24px;background:var(--gold);color:#fff;
+  font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;
+  transition:all 0.3s;border:none;cursor:pointer;
+}
+.btn-gold:hover{background:var(--gold2);box-shadow:0 6px 20px rgba(184,147,90,0.3)}
+.btn-light{
+  padding:12px 24px;background:transparent;color:rgba(255,255,255,0.7);
+  font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;
+  border:1px solid rgba(255,255,255,0.2);transition:all 0.3s;cursor:pointer;
+}
+.btn-light:hover{border-color:rgba(255,255,255,0.6);color:#fff}
+.hero-right{
+  background:var(--surface);
+  display:grid;grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:2px;
+}
+.gallery-tile{
+  background:var(--light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;position:relative;overflow:hidden;
+  transition:0.4s;min-height:80px;
+}
+.gallery-tile:hover{transform:scale(1.02)}
+.gt-1{background:linear-gradient(160deg,#e8d5b7,#d4c4a0)}
+.gt-2{background:linear-gradient(160deg,#c8b89a,#b8a480)}
+.gt-3{background:linear-gradient(160deg,#d8c8b0,#c8b898)}
+.gt-4{background:linear-gradient(160deg,#e0ceb0,#d0be98)}
+.gt-label{
+  position:absolute;bottom:10px;left:10px;
+  font-family:var(--ff-head);font-size:10px;font-style:italic;
+  color:rgba(45,39,32,0.6);letter-spacing:1px;
+}
+
+/* Stats strip */
+.stats-strip{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  background:var(--dark2);padding:24px 20px;gap:20px;
+}
+.stat-item{text-align:center}
+.stat-num{
+  font-family:var(--ff-head);font-size:32px;font-weight:300;
+  color:var(--gold);font-style:italic;
+}
+.stat-label{
+  font-family:var(--ff-mono);font-size:10px;letter-spacing:2px;
+  color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:4px;
+}
+
+/* ========== SERVICES ========== */
+.services-page{padding:30px 20px}
+.page-head{margin-bottom:40px}
+.page-eyebrow{
+  font-family:var(--ff-mono);font-size:10px;letter-spacing:4px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:10px;
+}
+.page-title{
+  font-family:var(--ff-head);font-size:clamp(32px,4vw,48px);
+  font-weight:300;font-style:italic;color:var(--dark);line-height:1.1;
+}
+.services-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;
+  margin-bottom:40px;
+}
+.service-card{
+  padding:24px;background:var(--surface);
+  border:1px solid transparent;
+  transition:all 0.3s;
+}
+.service-card:hover{background:var(--bg);border-color:var(--gold-light);box-shadow:0 6px 20px rgba(184,147,90,0.1)}
+.sc-icon{font-size:24px;margin-bottom:14px}
+.sc-name{
+  font-family:var(--ff-head);font-size:18px;font-weight:400;
+  font-style:italic;color:var(--dark);margin-bottom:6px;
+}
+.sc-desc{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:14px}
+.sc-price{
+  font-family:var(--ff-head);font-size:22px;font-weight:300;
+  color:var(--gold);
+}
+.sc-price span{font-family:var(--ff-mono);font-size:11px;color:var(--muted);letter-spacing:1px}
+
+.pricing-note{
+  padding:20px;background:var(--dark);color:rgba(255,255,255,0.5);
+  font-size:13px;line-height:1.7;font-weight:300;
+  border-left:3px solid var(--gold);
+}
+
+/* ========== GALLERY ========== */
+.gallery-page{padding:30px 20px}
+.gallery-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  grid-template-rows:auto;gap:6px;margin-top:30px;
+}
+.gallery-item{
+  background:var(--surface);overflow:hidden;
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  font-size:32px;position:relative;
+  transition:0.4s;cursor:pointer;
+}
+.gallery-item:hover{transform:scale(0.98);filter:brightness(1.1)}
+.gallery-item:nth-child(1){grid-column:span 2}
+.gallery-item::after{
+  content:attr(data-label);
+  position:absolute;bottom:0;left:0;right:0;
+  padding:12px;
+  background:linear-gradient(transparent,rgba(45,39,32,0.7));
+  font-family:var(--ff-head);font-size:12px;font-style:italic;
+  color:#fff;letter-spacing:1px;
+  opacity:0;transition:0.3s;
+}
+.gallery-item:hover::after{opacity:1}
+.gi-1{background:linear-gradient(135deg,#e0ccaa,#c8b490)}
+.gi-2{background:linear-gradient(135deg,#d0bca0,#b8a488)}
+.gi-3{background:linear-gradient(135deg,#c8b898,#b0a080)}
+.gi-4{background:linear-gradient(135deg,#daccb0,#cab898)}
+.gi-5{background:linear-gradient(135deg,#e8d8bc,#d0c0a0)}
+.gi-6{background:linear-gradient(135deg,#c0b090,#a89878)}
+.gi-7{background:linear-gradient(135deg,#d8c8a8,#c0b090)}
+
+/* ========== BOOK ========== */
+.book-page{padding:30px 20px;display:grid;grid-template-columns:1fr;gap:40px;align-items:start}
+.book-left h2{
+  font-family:var(--ff-head);font-size:clamp(28px,3.5vw,40px);
+  font-weight:300;font-style:italic;color:var(--dark);margin-bottom:12px;line-height:1.1;
+}
+.book-left p{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:20px;font-weight:300}
+.book-info{margin-top:30px}
+.book-info-item{
+  display:flex;align-items:flex-start;gap:12px;
+  margin-bottom:14px;padding-bottom:14px;
+  border-bottom:1px solid var(--light);
+}
+.bii-icon{font-size:18px;width:30px;flex-shrink:0}
+.bii-label{font-family:var(--ff-mono);font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:4px}
+.bii-val{font-size:14px;color:var(--text);font-weight:300}
+
+/* Form */
+.booking-form{background:var(--dark);padding:24px;color:#fff}
+.form-title{
+  font-family:var(--ff-head);font-size:22px;font-weight:300;
+  font-style:italic;color:var(--gold);margin-bottom:20px;
+}
+.form-row{margin-bottom:14px}
+.form-label{
+  display:block;font-family:var(--ff-mono);font-size:10px;
+  letter-spacing:2px;color:rgba(255,255,255,0.4);
+  text-transform:uppercase;margin-bottom:6px;
+}
+.form-input,.form-select{
+  width:100%;padding:10px 12px;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
+  color:#fff;font-family:var(--ff-body);font-size:14px;font-weight:300;
+  outline:none;transition:border-color 0.3s;
+}
+.form-input:focus,.form-select:focus{border-color:var(--gold)}
+.form-select{appearance:none;cursor:pointer}
+.form-select option{background:#1a1612;color:#fff}
+.form-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-submit{
+  width:100%;padding:14px;
+  background:var(--gold);color:#fff;
+  font-family:var(--ff-body);font-size:12px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;
+  border:none;cursor:pointer;transition:all 0.3s;margin-top:6px;
+}
+.form-submit:hover{background:var(--gold2);box-shadow:0 6px 20px rgba(184,147,90,0.3)}
+.form-submit.submitted{background:#4caf50}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <span class="nav-logo">LUM<span>IN</span>A</span>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('home',this)">Home</button>
+    <button class="nav-tab" onclick="showPage('services',this)">Services</button>
+    <button class="nav-tab" onclick="showPage('gallery',this)">Gallery</button>
+    <button class="nav-tab" onclick="showPage('book',this)">Book</button>
+  </div>
+  <button class="nav-cta" onclick="showPage('book',document.querySelectorAll('.nav-tab')[3])">Book Now</button>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="home-hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">// Premium Hair Studio · Est. 2018</p>
+      <h1 class="hero-title">Where Hair<br><strong>Becomes Art</strong></h1>
+      <p class="hero-desc">A boutique studio where every appointment is a bespoke experience. We believe beautiful hair is built on trust, expertise, and the finest techniques in the industry.</p>
+      <div class="hero-btns">
+        <button class="btn-gold" onclick="showPage('book',document.querySelectorAll('.nav-tab')[3])">Book Appointment</button>
+        <button class="btn-light" onclick="showPage('services',document.querySelectorAll('.nav-tab')[1])">View Services</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="gallery-tile gt-1"><span style="font-size:60px">✂</span><div class="gt-label">Precision Cuts</div></div>
+      <div class="gallery-tile gt-2"><span style="font-size:60px">🎨</span><div class="gt-label">Colour</div></div>
+      <div class="gallery-tile gt-3"><span style="font-size:60px">💆</span><div class="gt-label">Treatments</div></div>
+      <div class="gallery-tile gt-4"><span style="font-size:60px">✨</span><div class="gt-label">Styling</div></div>
+    </div>
+  </div>
+  <div class="stats-strip">
+    <div class="stat-item"><div class="stat-num">8+</div><div class="stat-label">Years in Business</div></div>
+    <div class="stat-item"><div class="stat-num">2.4K</div><div class="stat-label">Happy Clients</div></div>
+    <div class="stat-item"><div class="stat-num">12</div><div class="stat-label">Expert Stylists</div></div>
+    <div class="stat-item"><div class="stat-num">★ 4.9</div><div class="stat-label">Average Rating</div></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="page" id="page-services">
+  <div class="services-page">
+    <div class="page-head">
+      <p class="page-eyebrow">// What We Offer</p>
+      <h1 class="page-title">Our Services</h1>
+    </div>
+    <div class="services-grid">
+      ${[
+        ['✂','Precision Cut','A fully customised cut tailored to your face shape, lifestyle, and hair texture. Includes consultation, wash, and blow-dry.','From £65','<span>/ 60 min</span>'],
+        ['🎨','Colour & Highlights','From balayage to full colour, our colourists use premium organic dyes to achieve rich, long-lasting results.','From £95','<span>/ 90 min</span>'],
+        ['💆','Scalp Treatment','Deeply nourishing treatments that restore your hair from root to tip. Perfect for dry, damaged, or over-processed hair.','From £45','<span>/ 45 min</span>'],
+        ['💫','Bridal Styling','A once-in-a-lifetime day deserves once-in-a-lifetime hair. Includes full trial, morning prep, and on-site styling.','From £250','<span>/ Full Day</span>'],
+        ['🌿','Keratin Smoothing','A salon-grade smoothing treatment that eliminates frizz and adds a brilliant shine that lasts up to 4 months.','From £150','<span>/ 2 hrs</span>'],
+        ['✨','Blowout & Style','The perfect finish for any occasion. Volume, waves, sleek — your hair, exactly how you want it.','From £35','<span>/ 45 min</span>'],
+      ].map(([i,n,d,p,s])=>`
+      <div class="service-card">
+        <div class="sc-icon">${i}</div>
+        <div class="sc-name">${n}</div>
+        <p class="sc-desc">${d}</p>
+        <div class="sc-price">${p} ${s}</div>
+      </div>`).join('')}
+    </div>
+    <div class="pricing-note">
+      All prices listed are starting prices. Final pricing is confirmed during your consultation and may vary based on hair length, density, and technique complexity. We believe in full transparency — no surprise charges, ever.
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="page" id="page-gallery">
+  <div class="gallery-page">
+    <div class="page-head">
+      <p class="page-eyebrow">// Our Work</p>
+      <h1 class="page-title">Portfolio</h1>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item gi-1" data-label="Balayage Transformation" style="font-size:80px">✂</div>
+      <div class="gallery-item gi-2" data-label="Copper Highlights" style="font-size:50px">🎨</div>
+      <div class="gallery-item gi-3" data-label="Precision Bob" style="font-size:50px">💇</div>
+      <div class="gallery-item gi-4" data-label="Bridal Updo" style="font-size:50px">💍</div>
+      <div class="gallery-item gi-5" data-label="Platinum Blonde" style="font-size:50px">✨</div>
+      <div class="gallery-item gi-6" data-label="Sleek Blowout" style="font-size:50px">💆</div>
+      <div class="gallery-item gi-7" data-label="Natural Curl Enhancement" style="font-size:50px">🌿</div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOK -->
+<div class="page" id="page-book">
+  <div class="book-page">
+    <div class="book-left">
+      <h2>Book Your<br>Appointment</h2>
+      <p>Every great look starts with a conversation. Fill in the form and one of our team will confirm your booking within 24 hours.</p>
+      <div class="book-info">
+        <div class="book-info-item">
+          <div class="bii-icon">📍</div>
+          <div><div class="bii-label">Location</div><div class="bii-val">42 Marylebone Lane, London W1U 2NR</div></div>
+        </div>
+        <div class="book-info-item">
+          <div class="bii-icon">🕐</div>
+          <div><div class="bii-label">Hours</div><div class="bii-val">Mon–Sat: 9am–7pm · Sun: 10am–5pm</div></div>
+        </div>
+        <div class="book-info-item">
+          <div class="bii-icon">📞</div>
+          <div><div class="bii-label">Phone</div><div class="bii-val">+44 20 7123 4567</div></div>
+        </div>
+        <div class="book-info-item" style="border:none">
+          <div class="bii-icon">✉</div>
+          <div><div class="bii-label">Email</div><div class="bii-val">hello@lumina-studio.co.uk</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="booking-form">
+      <div class="form-title">Request a Booking</div>
+      <div class="form-two">
+        <div class="form-row"><label class="form-label">First Name</label><input class="form-input" type="text" placeholder="Jane"></div>
+        <div class="form-row"><label class="form-label">Last Name</label><input class="form-input" type="text" placeholder="Smith"></div>
+      </div>
+      <div class="form-row"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="jane@example.com"></div>
+      <div class="form-row"><label class="form-label">Service</label>
+        <select class="form-select">
+          <option value="">Select a service</option>
+          <option>Precision Cut — from £65</option>
+          <option>Colour & Highlights — from £95</option>
+          <option>Scalp Treatment — from £45</option>
+          <option>Bridal Styling — from £250</option>
+          <option>Keratin Smoothing — from £150</option>
+          <option>Blowout & Style — from £35</option>
+        </select>
+      </div>
+      <div class="form-two">
+        <div class="form-row"><label class="form-label">Preferred Date</label><input class="form-input" type="date"></div>
+        <div class="form-row"><label class="form-label">Preferred Time</label>
+          <select class="form-select">
+            <option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+            <option>12:00 PM</option><option>2:00 PM</option><option>3:00 PM</option><option>5:00 PM</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row"><label class="form-label">Notes (optional)</label><input class="form-input" placeholder="Any allergies, inspirations, or questions?"></div>
+      <button class="form-submit" id="bookSubmit" onclick="submitBook()">Request Appointment</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function showPage(id, tab) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (tab) tab.classList.add('active');
+}
+function submitBook() {
+  const btn = document.getElementById('bookSubmit');
+  btn.textContent = '✓ Request Sent — We\'ll Be in Touch!';
+  btn.classList.add('submitted');
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>

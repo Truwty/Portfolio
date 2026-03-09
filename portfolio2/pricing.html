@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Pricing — Truwty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=JetBrains+Mono:wght@300;400;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .pricing-hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 40px 60px;
+      position: relative;
+    }
+    .pricing-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center top, rgba(0,255,204,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+    }
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s var(--ease);
+    }
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--c, var(--primary));
+      opacity: 0.8;
+    }
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0,255,204,0.25);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .pricing-card.featured {
+      background: linear-gradient(180deg, rgba(0,255,204,0.08) 0%, var(--card-bg) 100%);
+      border-color: rgba(0,255,204,0.2);
+    }
+    .pricing-card.featured::before {
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    .pricing-card:nth-child(1) { --c: var(--primary); }
+    .pricing-card:nth-child(2) { --c: var(--secondary); }
+    .pricing-card:nth-child(3) { --c: var(--tertiary); }
+    .pricing-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-family: var(--ff-code);
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: rgba(0,255,204,0.15);
+      color: var(--primary);
+      border: 1px solid rgba(0,255,204,0.3);
+    }
+    .pricing-tier {
+      font-family: var(--ff-code);
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--c, var(--primary));
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .pricing-name {
+      font-family: var(--ff-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .pricing-desc {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      min-height: 48px;
+    }
+    .pricing-price {
+      margin-bottom: 28px;
+    }
+    .pricing-amount {
+      font-family: var(--ff-display);
+      font-size: 42px;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1;
+    }
+    .pricing-amount span {
+      font-size: 18px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .pricing-note {
+      font-family: var(--ff-code);
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+    .pricing-features .check {
+      color: var(--c, var(--primary));
+      font-size: 16px;
+    }
+    .pricing-btn {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      border-radius: 8px;
+      font-family: var(--ff-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-align: center;
+      transition: all 0.3s var(--ease);
+      border: 1.5px solid rgba(0,255,204,0.3);
+      color: var(--primary);
+      background: rgba(0,255,204,0.05);
+    }
+    .pricing-btn:hover {
+      background: var(--c, var(--primary));
+      color: #000;
+      box-shadow: 0 0 30px rgba(0,255,204,0.3);
+    }
+    .pricing-card:nth-child(2) .pricing-btn {
+      border-color: rgba(255,0,102,0.3);
+      color: var(--secondary);
+      background: rgba(255,0,102,0.05);
+    }
+    .pricing-card:nth-child(2) .pricing-btn:hover {
+      background: var(--secondary);
+      color: #fff;
+      box-shadow: 0 0 30px rgba(255,0,102,0.3);
+    }
+    .pricing-card:nth-child(3) .pricing-btn {
+      border-color: rgba(136,51,255,0.3);
+      color: var(--tertiary);
+      background: rgba(136,51,255,0.05);
+    }
+    .pricing-card:nth-child(3) .pricing-btn:hover {
+      background: var(--tertiary);
+      color: #fff;
+      box-shadow: 0 0 30px rgba(136,51,255,0.3);
+    }
+    
+    /* Payment Section */
+    .payment-section {
+      background: var(--bg2);
+      padding: 80px 40px;
+      text-align: center;
+    }
+    .payment-box {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid rgba(0,255,204,0.12);
+      border-radius: 20px;
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .payment-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top, rgba(0,255,204,0.05), transparent 70%);
+      pointer-events: none;
+    }
+    .payment-title {
+      font-family: var(--ff-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .payment-subtitle {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 32px;
+    }
+    .payment-method {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 20px 32px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(0,255,204,0.15);
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .payment-icon {
+      font-size: 32px;
+    }
+    .payment-label {
+      font-family: var(--ff-code);
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .payment-value {
+      font-family: var(--ff-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 4px;
+    }
+    .payment-note {
+      font-family: var(--ff-code);
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .payment-note strong {
+      color: var(--primary);
+    }
+    
+    /* Custom Quote */
+    .quote-section {
+      padding: 100px 40px;
+      text-align: center;
+    }
+    .quote-box {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .quote-title {
+      font-family: var(--ff-display);
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .quote-desc {
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+    .quote-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 40px;
+      border-radius: 8px;
+      font-family: var(--ff-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: var(--primary);
+      color: #000;
+      box-shadow: 0 0 40px rgba(0,255,204,0.3);
+      transition: all 0.3s var(--ease);
+    }
+    .quote-btn:hover {
+      background: #fff;
+      box-shadow: 0 0 60px rgba(0,255,204,0.5);
+      transform: translateY(-2px);
+    }
+    
+    @media(max-width: 900px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+      }
+    }
+    @media(max-width: 600px) {
+      .pricing-hero {
+        padding: 100px 24px 40px;
+      }
+      .pricing-grid, .payment-section, .quote-section {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .payment-box {
+        padding: 32px 24px;
+      }
+      .pricing-amount {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- LOADER (required for main.js) -->
+  <div id="loader" class="loader hidden">
+    <div class="loader-inner">
+      <div class="loader-hex"><span class="loader-initials">TW</span></div>
+      <div class="loader-name">TRUWTY</div>
+      <div class="loader-progress">
+        <div class="loader-track"><div class="loader-fill" id="loaderFill"></div></div>
+        <span id="loaderPct">100</span><span>%</span>
+      </div>
+      <div class="loader-status" id="loaderStatus">Ready.</div>
+    </div>
+  </div>
+
+  <!-- HERO CANVAS (required for main.js Three.js) -->
+  <canvas id="heroCanvas" style="display:none"></canvas>
+
+  <!-- NAV -->
+  <header class="nav-wrap" id="navWrap">
+    <nav class="nav">
+      <a class="nav-logo" href="index.html"><span class="logo-bracket"><</span>TW<span class="logo-bracket">/></span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="index.html#skills" class="nav-link">Skills</a></li>
+        <li><a href="index.html#demos" class="nav-link">Demos</a></li>
+        <li><a href="index.html#showcase" class="nav-link">Showcase</a></li>
+        <li><a href="index.html#roblox" class="nav-link">Roblox</a></li>
+        <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="index.html#contact" class="nav-link nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- PRICING HERO -->
+  <section class="pricing-hero">
+    <div>
+      <span class="section-tag reveal-up" style="display:block;margin-bottom:16px">// PRICING</span>
+      <h1 class="section-title reveal-up" style="font-size: clamp(36px,6vw,56px);margin-bottom:20px">Transparent Pricing</h1>
+      <p class="section-sub reveal-up" style="max-width:500px;margin:0 auto">Simple, fair pricing for website development. No hidden fees.</p>
+    </div>
+  </section>
+
+  <!-- PRICING CARDS -->
+  <div class="pricing-grid">
+    <!-- Starter -->
+    <div class="pricing-card reveal-up" style="--d:0s">
+      <span class="pricing-badge">Basic</span>
+      <div class="pricing-tier">Starter</div>
+      <h3 class="pricing-name">Landing Page</h3>
+      <p class="pricing-desc">A single-page website perfect for small businesses and personal projects.</p>
+      <div class="pricing-price">
+      <div class="pricing-amount">£80<span> – £150</span></div>
+        <div class="pricing-note">Starting price</div>
+      </div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> 1 Custom Page</li>
+        <li><span class="check">✓</span> Responsive Design</li>
+        <li><span class="check">✓</span> Contact Form</li>
+        <li><span class="check">✓</span> Basic SEO Setup</li>
+        <li><span class="check">✓</span> Social Media Links</li>
+      </ul>
+      <a href="index.html#contact" class="pricing-btn">Get Started</a>
+    </div>
+
+    <!-- Professional -->
+    <div class="pricing-card featured reveal-up" style="--d:0.1s">
+      <span class="pricing-badge">Popular</span>
+      <div class="pricing-tier">Professional</div>
+      <h3 class="pricing-name">Business Website</h3>
+      <p class="pricing-desc">Multi-page website with advanced features for growing businesses.</p>
+      <div class="pricing-price">
+        <div class="pricing-amount">£200<span> – £400</span></div>
+        <div class="pricing-note">Most popular choice</div>
+      </div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> Up to 5 Pages</li>
+        <li><span class="check">✓</span> Responsive Design</li>
+        <li><span class="check">✓</span> Contact Form + Email</li>
+        <li><span class="check">✓</span> Advanced SEO</li>
+        <li><span class="check">✓</span> Blog / News Section</li>
+        <li><span class="check">✓</span> Google Analytics</li>
+        <li><span class="check">✓</span> 1 Month Support</li>
+      </ul>
+      <a href="index.html#contact" class="pricing-btn">Get Started</a>
+    </div>
+
+    <!-- E-Commerce -->
+    <div class="pricing-card reveal-up" style="--d:0.2s">
+      <span class="pricing-badge">Advanced</span>
+      <div class="pricing-tier">E-Commerce</div>
+      <h3 class="pricing-name">Online Store</h3>
+      <p class="pricing-desc">Full-featured online store with product management and payments.</p>
+      <div class="pricing-price">
+        <div class="pricing-amount">£400<span> – £1,000</span></div>
+        <div class="pricing-note">Price varies by products</div>
+      </div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> Up to 10 Pages</li>
+        <li><span class="check">✓</span> Product Catalog</li>
+        <li><span class="check">✓</span> Shopping Cart</li>
+        <li><span class="check">✓</span> Payment Integration</li>
+        <li><span class="check">✓</span> Order Management</li>
+        <li><span class="check">✓</span> 3 Months Support</li>
+      </ul>
+      <a href="index.html#contact" class="pricing-btn">Get Started</a>
+    </div>
+  </div>
+
+  <!-- ADDITIONAL SERVICES -->
+  <div class="pricing-grid" style="padding-top:20px">
+    <!-- Add-Ons -->
+    <div class="pricing-card reveal-up" style="--d:0.3s">
+      <div class="pricing-tier">Add-On</div>
+      <h3 class="pricing-name">Extra Features</h3>
+      <p class="pricing-desc">Additional services to enhance your website.</p>
+      <div class="pricing-price">
+        <div class="pricing-amount">£25<span> – £150</span></div>
+        <div class="pricing-note">Per feature</div>
+      </div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> Custom Animations</li>
+        <li><span class="check">✓</span> Additional Pages</li>
+        <li><span class="check">✓</span> Logo Design</li>
+        <li><span class="check">✓</span> Content Writing</li>
+        <li><span class="check">✓</span> API Integration</li>
+      </ul>
+    </div>
+
+    <!-- Maintenance -->
+    <div class="pricing-card reveal-up" style="--d:0.4s">
+      <div class="pricing-tier">Ongoing</div>
+      <h3 class="pricing-name">Maintenance</h3>
+      <p class="pricing-desc">Keep your website running smoothly with monthly maintenance.</p>
+      <div class="pricing-price">
+        <div class="pricing-amount">£25<span> /mo</span></div>
+        <div class="pricing-note">Billed monthly</div>
+      </div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> Security Updates</li>
+        <li><span class="check">✓</span> Backup & Restore</li>
+        <li><span class="check">✓</span> Bug Fixes</li>
+        <li><span class="check">✓</span> Minor Content Updates</li>
+        <li><span class="check">✓</span> Performance Optimization</li>
+      </ul>
+    </div>
+
+    <!-- Custom -->
+    <div class="pricing-card reveal-up" style="--d:0.5s">
+      <div class="pricing-tier">Custom</div>
+      <h3 class="pricing-name">Custom Project</h3>
+      <p class="pricing-desc">Complex web applications, games, and unique solutions.</p>
+      <div class="pricing-price">
+        <div class="pricing-amount">Custom<span> Quote</span></div>
+        <div class="pricing-note">Tailored to your needs</div>
+      </div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> Any Web Application</li>
+        <li><span class="check">✓</span> Game Development</li>
+        <li><span class="check">✓</span> API Development</li>
+        <li><span class="check">✓</span> Database Design</li>
+        <li><span class="check">✓</span> Full Stack Solutions</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PAYMENT SECTION -->
+  <section class="payment-section">
+    <div class="payment-box reveal-up">
+      <h2 class="payment-title">Payment Methods</h2>
+      <p class="payment-subtitle">Simple and secure payments via Bank Transfer</p>
+      
+      <div class="payment-method">
+        <span class="payment-icon">🏦</span>
+        <div>
+          <div class="payment-label">Bank Transfer</div>
+          <div class="payment-value">Available</div>
+        </div>
+      </div>
+      
+      <p class="payment-note">
+        I accept <strong>Bank Transfer (SWIFT/IBAN)</strong> for all projects.<br>
+        Payment terms: <strong>50% upfront</strong> to begin, <strong>50% upon completion</strong>.<br>
+        Invoices provided with detailed breakdown of work.
+      </p>
+    </div>
+  </section>
+
+  <!-- CUSTOM QUOTE -->
+  <section class="quote-section">
+    <div class="quote-box">
+      <h2 class="quote-title reveal-up">Need Something Unique?</h2>
+      <p class="quote-desc reveal-up">Every project is different. Tell me about your idea and I'll create a custom quote tailored to your specific needs.</p>
+      <a href="index.html#contact" class="quote-btn reveal-up">Get a Custom Quote <span>→</span></a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-logo"><TW/></span>
+      <p class="footer-copy">Designed & Built by Truwty · <span id="footerYear"></span></p>
+      <p class="footer-made">Crafted with <span class="hl">JavaScript</span> &amp; a <span class="hl">Lua heart</span></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Set footer year
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+

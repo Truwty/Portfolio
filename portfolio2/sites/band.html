@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scratch Cat — Alt-Rock Band</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0D0D0D;--bg2:#1A1A1A;--surface:#141414;
+  --purple:#6A0DAD;--purple2:#7B2FBE;--purple-light:#9B4DCA;
+  --lavender:#B794F6;--text:#F5F5F5;--text-muted:#A0A0A0;
+  --ff-head:'Oswald',sans-serif;
+  --ff-body:'Barlow Condensed',sans-serif;
+  --ff-mono:'Space Mono',monospace;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--ff-body)}
+a{color:inherit;text-decoration:none}
+button{border:none;background:none;font-family:inherit;color:inherit;cursor:pointer}
+
+/* BACKGROUND */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse at 30% 20%,rgba(106,13,173,0.15),transparent 50%),
+             radial-gradient(ellipse at 70% 80%,rgba(123,47,190,0.1),transparent 40%);
+  pointer-events:none;z-index:0
+}
+
+/* MAIN CONTAINER */
+.main-wrapper{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  z-index:1;
+}
+
+/* NAV */
+.site-nav{
+  position:sticky;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 30px;height:70px;
+  background:rgba(13,13,13,0.98);
+  border-bottom:1px solid rgba(106,13,173,0.3);
+  backdrop-filter:blur(10px);
+}
+.nav-logo{
+  font-family:var(--ff-head);font-size:24px;font-weight:700;letter-spacing:3px;
+  color:var(--text);text-transform:uppercase;
+}
+.nav-logo span{color:var(--purple)}
+.nav-tabs{display:flex;gap:4px}
+.nav-tab{
+  padding:10px 18px;font-family:var(--ff-body);font-size:14px;
+  font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--text-muted);border-bottom:2px solid transparent;
+  transition:all 0.3s;cursor:pointer
+}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{color:var(--purple-light);border-bottom-color:var(--purple)}
+
+/* CONTENT AREA */
+.content{
+  flex:1;
+  padding-bottom:80px;
+}
+
+/* PAGES */
+.page{
+  display:none;
+  padding:40px 30px 60px;
+  animation:fadeIn 0.4s ease;
+}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--purple)}
+
+/* ========== HOME PAGE ========== */
+.home-hero{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:40px 20px;text-align:center;min-height:60vh
+}
+.band-logo{
+  width:200px;height:200px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--purple2));
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:30px;box-shadow:0 0 60px rgba(106,13,173,0.4);
+  overflow:hidden;
+}
+.band-logo img{width:90%;height:90%;object-fit:contain}
+.hero-band-name{
+  font-family:var(--ff-head);font-size:clamp(48px,10vw,80px);
+  font-weight:700;letter-spacing:8px;text-transform:uppercase;
+  color:var(--text);margin-bottom:10px;
+  text-shadow:0 0 40px rgba(106,13,173,0.5);
+}
+.hero-tagline{
+  font-family:var(--ff-body);font-size:18px;font-weight:500;
+  letter-spacing:6px;color:var(--purple-light);text-transform:uppercase;
+  margin-bottom:40px;
+}
+.hero-est{
+  font-family:var(--ff-mono);font-size:14px;color:var(--text-muted);
+  margin-bottom:30px;letter-spacing:2px
+}
+
+/* Social Buttons */
+.social-links{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:50px}
+.social-btn{
+  width:50px;height:50px;border-radius:50%;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(106,13,173,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;transition:all 0.3s;text-decoration:none
+}
+.social-btn:hover{background:var(--purple);border-color:var(--purple);transform:translateY(-3px);box-shadow:0 10px 30px rgba(106,13,173,0.4)}
+.social-btn.spotify:hover{background:#1DB954}
+
+/* About Section */
+.about-section{padding:20px 30px 60px;max-width:900px;text-align:center;margin:0 auto}
+.about-title{
+  font-family:var(--ff-head);font-size:36px;font-weight:700;
+  letter-spacing:4px;text-transform:uppercase;color:var(--purple-light);
+  margin-bottom:20px;
+}
+.about-text{
+  font-size:18px;line-height:1.8;color:var(--text-muted);
+  font-weight:400;
+}
+
+/* ========== MEMBERS PAGE ========== */
+.page-title{
+  font-family:var(--ff-head);font-size:clamp(32px,6vw,48px);
+  font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--text);text-align:center;margin-bottom:50px
+}
+.members-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1200px;margin:0 auto
+}
+.member-card{
+  background:var(--surface);border:1px solid rgba(106,13,173,0.2);
+  border-radius:12px;overflow:hidden;transition:all 0.3s;
+}
+.member-card:hover{border-color:var(--purple);transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,0.4)}
+.member-photo{
+  width:100%;aspect-ratio:1;background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.member-photo img{width:100%;height:100%;object-fit:cover}
+.member-photo .placeholder{
+  font-size:56px;color:var(--purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.member-info{padding:16px;text-align:center}
+.member-name{
+  font-family:var(--ff-head);font-size:18px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;color:var(--text);
+  margin-bottom:6px
+}
+.member-role{
+  font-family:var(--ff-body);font-size:12px;color:var(--purple-light);
+  letter-spacing:1px;margin-bottom:10px
+}
+.member-insta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--ff-mono);font-size:11px;color:var(--text-muted);
+  transition:color 0.3s;text-decoration:none
+}
+.member-insta:hover{color:var(--purple)}
+
+/* ========== RELEASES PAGE ========== */
+.releases-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto
+}
+.release-card{
+  background:var(--surface);border:1px solid rgba(106,13,173,0.2);
+  border-radius:12px;padding:0;overflow:hidden;transition:all 0.3s
+}
+.release-card:hover{border-color:var(--purple);transform:translateY(-3px)}
+.release-art{
+  height:160px;background:linear-gradient(135deg,var(--purple),var(--bg));
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden
+}
+.release-art::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.1),transparent 60%)
+}
+.release-art-ghost{background:linear-gradient(160deg,#1a0a2e,#0d0d1a)}
+.release-art-jaded{background:linear-gradient(160deg,#2e1a1a,#1a0d0d)}
+.release-art-fall{background:linear-gradient(160deg,#1a2e1a,#0d1a0d)}
+.release-number{
+  font-family:var(--ff-head);font-size:64px;font-weight:700;
+  color:rgba(255,255,255,0.15);position:absolute
+}
+.release-info{padding:16px}
+.release-title{
+  font-family:var(--ff-head);font-size:16px;font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;color:var(--text);
+  margin-bottom:6px
+}
+.release-date{
+  font-family:var(--ff-mono);font-size:11px;color:var(--text-muted);
+  margin-bottom:10px;letter-spacing:1px;
+}
+.release-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--ff-body);font-size:12px;font-weight:600;
+  color:var(--purple-light);text-transform:uppercase;letter-spacing:1px;
+  transition:color 0.3s;text-decoration:none
+}
+.release-link:hover{color:var(--text)}
+
+/* ========== SHOWS PAGE ========== */
+.shows-list{max-width:700px;margin:0 auto}
+.show-card{
+  background:var(--surface);border:1px solid rgba(106,13,173,0.2);
+  border-radius:12px;padding:24px;margin-bottom:16px;
+  display:flex;align-items:center;gap:24px;transition:all 0.3s
+}
+.show-card:hover{border-color:var(--purple)}
+.show-date{min-width:80px;text-align:center}
+.show-date-day{
+  font-family:var(--ff-head);font-size:32px;font-weight:700;
+  color:var(--purple-light);line-height:1
+}
+.show-date-month{
+  font-family:var(--ff-body);font-size:14px;color:var(--text-muted);
+  text-transform:uppercase;letter-spacing:2px
+}
+.show-details{flex:1}
+.show-venue{
+  font-family:var(--ff-head);font-size:18px;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;color:var(--text);
+  margin-bottom:4px
+}
+.show-event{font-family:var(--ff-body);font-size:14px;color:var(--text-muted)}
+.show-recap{
+  padding:10px 20px;background:rgba(106,13,173,0.1);
+  border:1px solid rgba(106,13,173,0.3);border-radius:8px;
+  font-family:var(--ff-body);font-size:13px;color:var(--purple-light);
+  transition:all 0.3s;text-decoration:none
+}
+.show-recap:hover{background:var(--purple);color:var(--text)}
+
+/* FOOTER */
+.site-footer{
+  padding:30px;text-align:center;border-top:1px solid rgba(106,13,173,0.2);
+  background:rgba(13,13,13,0.98);
+  position:relative;z-index:10
+}
+.footer-social{display:flex;gap:16px;justify-content:center;margin-bottom:16px}
+.footer-copy{font-family:var(--ff-mono);font-size:12px;color:var(--text-muted)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .members-grid{grid-template-columns:repeat(2,1fr)}
+  .releases-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .site-nav{padding:0 16px;height:60px;flex-wrap:wrap;gap:10px}
+  .nav-logo{font-size:18px}
+  .nav-tabs{order:3;width:100%;justify-content:center;padding:8px 0}
+  .nav-tab{padding:8px 12px;font-size:11px}
+  .band-logo{width:150px;height:150px}
+  .hero-band-name{letter-spacing:4px}
+  .hero-tagline{letter-spacing:3px;font-size:14px}
+  .members-grid{grid-template-columns:1fr 1fr;gap:16px}
+  .releases-grid{grid-template-columns:1fr}
+  .show-card{flex-direction:column;text-align:center;gap:16px}
+  .show-recap{width:100%}
+  .about-section{padding:20px 16px 40px}
+  .page{padding:30px 16px 50px}
+}
+@media(max-width:480px){
+  .members-grid{grid-template-columns:1fr}
+  .member-card{max-width:300px;margin:0 auto}
+}
+</style>
+</head>
+<body>
+
+<div class="main-wrapper">
+  <nav class="site-nav">
+    <span class="nav-logo">SCRATCH<span>CAT</span></span>
+    <div class="nav-tabs">
+      <div class="nav-tab active" onclick="showPage('home',this)">Home</div>
+      <div class="nav-tab" onclick="showPage('members',this)">Members</div>
+      <div class="nav-tab" onclick="showPage('releases',this)">Releases</div>
+      <div class="nav-tab" onclick="showPage('shows',this)">Shows</div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <!-- HOME -->
+    <div class="page active" id="page-home">
+      <div class="home-hero">
+        <div class="band-logo">
+          <img src="../../Images/Scratch Cat.jpg" alt="Scratch Cat Logo">
+        </div>
+        <h1 class="hero-band-name">Scratch Cat</h1>
+        <p class="hero-tagline">Alt-Rock · North London</p>
+        <p class="hero-est">Est. 2024</p>
+        
+        <div class="social-links">
+          <a href="https://open.spotify.com/artist/5sC3QbNn932EM4ci7MjC9P?si=oYv5RJ-3SeORKrzxWVmpRQ" target="_blank" class="social-btn spotify" title="Spotify">🎵</a>
+          <a href="https://www.instagram.com/scratch.cat.band" target="_blank" class="social-btn" title="Instagram">📷</a>
+          <a href="https://www.tiktok.com/@scratch.cat.band" target="_blank" class="social-btn" title="TikTok">🎵</a>
+          <a href="https://www.youtube.com/@standx23" target="_blank" class="social-btn" title="YouTube">▶</a>
+        </div>
+      </div>
+      
+      <div class="about-section">
+        <h2 class="about-title">About The Band</h2>
+        <p class="about-text">
+          Scratch Cat is an alt-rock band from North London, founded in 2024. 
+          Blending dark, moody atmospheres with raw energy — we bring you music that hits hard and feels deeper.
+          Four souls, one sound. From the underground venues of London to something bigger.
+        </p>
+      </div>
+    </div>
+
+    <!-- MEMBERS -->
+    <div class="page" id="page-members">
+      <h1 class="page-title">The Band</h1>
+      <div class="members-grid">
+        <div class="member-card">
+          <div class="member-photo">
+            <img src="../../Images/Stanley.png" alt="Stanley Colson">
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Stanley Colson</h3>
+            <p class="member-role">Lyricist · Composer · Lead Singer</p>
+            <a href="https://instagram.com/stan.c7" target="_blank" class="member-insta">📷 @stan.c7</a>
+          </div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo">
+            <div class="placeholder" style="background: linear-gradient(135deg, #2a1a3a, #1a0a2a);">
+              <span style="font-size: 48px;">🎸</span>
+            </div>
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Fabio Ingrey</h3>
+            <p class="member-role">Guitarist</p>
+            <a href="https://instagram.com/fabio.ingrey.music" target="_blank" class="member-insta">📷 @fabio.ingrey.music</a>
+          </div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo">
+            <div class="placeholder" style="background: linear-gradient(135deg, #1a2a2a, #0a1a1a);">
+              <span style="font-size: 48px;">🥁</span>
+            </div>
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Barnaby</h3>
+            <p class="member-role">Drummer</p>
+            <a href="https://instagram.com/allhopeforbarny._" target="_blank" class="member-insta">📷 @allhopeforbarny._</a>
+          </div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo">
+            <div class="placeholder" style="background: linear-gradient(135deg, #2a2a1a, #1a1a0a);">
+              <span style="font-size: 48px;">🎸</span>
+            </div>
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Lemonch</h3>
+            <p class="member-role">Bassist</p>
+            <a href="https://instagram.com/_lemonch" target="_blank" class="member-insta">📷 @_lemonch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RELEASES -->
+    <div class="page" id="page-releases">
+      <h1 class="page-title">Releases</h1>
+      <div class="releases-grid">
+        <div class="release-card">
+          <div class="release-art release-art-ghost">
+            <span class="release-number">01</span>
+          </div>
+          <div class="release-info">
+            <h3 class="release-title">Ghosts (That Can't Die)</h3>
+            <p class="release-date">Released: January 2025</p>
+            <a href="https://open.spotify.com/artist/5sC3QbNn932EM4ci7MjC9P" target="_blank" class="release-link">▶ Listen on Spotify</a>
+          </div>
+        </div>
+        <div class="release-card">
+          <div class="release-art release-art-jaded">
+            <span class="release-number">02</span>
+          </div>
+          <div class="release-info">
+            <h3 class="release-title">Jaded</h3>
+            <p class="release-date">Released: November 2024</p>
+            <a href="https://open.spotify.com/artist/5sC3QbNn932EM4ci7MjC9P" target="_blank" class="release-link">▶ Listen on Spotify</a>
+          </div>
+        </div>
+        <div class="release-card">
+          <div class="release-art release-art-fall">
+            <span class="release-number">03</span>
+          </div>
+          <div class="release-info">
+            <h3 class="release-title">Fall and Break</h3>
+            <p class="release-date">Released: September 2024</p>
+            <a href="https://open.spotify.com/artist/5sC3QbNn932EM4ci7MjC9P" target="_blank" class="release-link">▶ Listen on Spotify</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOWS -->
+    <div class="page" id="page-shows">
+      <h1 class="page-title">Live Shows</h1>
+      <div class="shows-list">
+        <div class="show-card">
+          <div class="show-date">
+            <div class="show-date-day">27</div>
+            <div class="show-date-month">Feb 2025</div>
+          </div>
+          <div class="show-details">
+            <h3 class="show-venue">Jom Junior Open Mic</h3>
+            <p class="show-event">North London — Live Performance</p>
+          </div>
+          <a href="https://www.instagram.com/scratch.cat.band" target="_blank" class="show-recap">View Recap</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-social">
+      <a href="https://open.spotify.com/artist/5sC3QbNn932EM4ci7MjC9P" target="_blank" class="social-btn spotify">🎵</a>
+      <a href="https://www.instagram.com/scratch.cat.band" target="_blank" class="social-btn">📷</a>
+      <a href="https://www.tiktok.com/@scratch.cat.band" target="_blank" class="social-btn">🎵</a>
+      <a href="https://www.youtube.com/@standx23" target="_blank" class="social-btn">▶</a>
+    </div>
+    <p class="footer-copy">© 2024 Scratch Cat. All rights reserved.</p>
+  </footer>
+</div>
+
+<script>
+function showPage(id, tab) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (tab) tab.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>

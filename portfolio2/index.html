@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Truwty — Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=JetBrains+Mono:wght@300;400;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- LOADER -->
+  <div id="loader" class="loader">
+    <div class="loader-inner">
+      <div class="loader-hex"><span class="loader-initials">TW</span></div>
+      <div class="loader-name">TRUWTY</div>
+      <div class="loader-progress">
+        <div class="loader-track"><div class="loader-fill" id="loaderFill"></div></div>
+        <span id="loaderPct">0</span><span>%</span>
+      </div>
+      <div class="loader-status" id="loaderStatus">Initializing...</div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <header class="nav-wrap" id="navWrap">
+    <nav class="nav">
+      <a class="nav-logo" href="#home"><span class="logo-bracket">&lt;</span>TW<span class="logo-bracket">/&gt;</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#demos" class="nav-link">Demos</a></li>
+        <li><a href="#showcase" class="nav-link">Showcase</a></li>
+        <li><a href="#roblox" class="nav-link">Roblox</a></li>
+        <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag reveal-up">FULL STACK DEVELOPER &amp; GAME ARCHITECT</div>
+      <h1 class="hero-name reveal-up">TRUWTY</h1>
+      <p class="hero-sub" id="heroSub"></p>
+      <div class="hero-btns reveal-up">
+        <a href="#demos" class="btn btn-primary">Explore Work <span class="btn-arr">→</span></a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+      </div>
+<div class="hero-stats reveal-up">
+        <div class="hstat"><span class="hstat-num" id="robloxStatHero">12K+</span><span class="hstat-label">Roblox Followers</span></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-num">4</span><span class="hstat-label">Languages</span></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-num">Full</span><span class="hstat-label">Stack</span></div>
+      </div>
+    </div>
+    <div class="scroll-hint"><div class="scroll-dot"></div></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-wrap">
+      <div class="section-header reveal-up">
+        <span class="section-tag">// 01 — WHO I AM</span>
+        <h2 class="section-title">Code Is My Craft</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal-left">
+          <p class="about-lead">I build things people actually <em class="hl">use</em>.</p>
+          <p>Started as a Roblox game developer — scripting complex systems in Lua, architecting game logic, and building experiences that thousands of players enjoyed. That foundation forged the skills that matter: performance thinking, clean architecture, and knowing when to ship.</p>
+          <p>Today I work across the full stack. Frontend to backend, browser games to automation bots, REST APIs to real-time systems. Four languages, zero limitations.</p>
+          <div class="about-chips">
+            <span class="chip">Full Stack Dev</span><span class="chip">Game Dev</span>
+            <span class="chip">Systems Design</span><span class="chip">Automation</span>
+            <span class="chip">UI Engineering</span>
+          </div>
+        </div>
+        <div class="about-code-card reveal-right">
+          <div class="code-card-glow"></div>
+          <div class="code-header">
+            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+            <span class="code-fname">truwty.json</span>
+          </div>
+<pre class="code-body"><span class="j-brace">{</span>
+  <span class="j-key">"alias"</span>: <span class="j-str">"Truwty"</span>,
+  <span class="j-key">"role"</span>: <span class="j-str">"Full Stack Developer"</span>,
+  <span class="j-key">"languages"</span>: [
+    <span class="j-str">"Lua"</span>, <span class="j-str">"JavaScript"</span>, <span class="j-str">"Python"</span>, <span class="j-str">"HTML/CSS"</span>
+  ],
+  <span class="j-key">"origin"</span>: <span class="j-str">"Roblox Game Dev"</span>,
+  <span class="j-key">"roblox_followers"</span>: <span class="j-num" id="codeFollowers">12000</span>,
+  <span class="j-key">"available"</span>: <span class="j-bool">true</span>,
+  <span class="j-key">"contact"</span>: <span class="j-str">"truwty1@gmail.com"</span>
+<span class="j-brace">}</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills-section" id="skills">
+    <div class="section-wrap">
+      <div class="section-header reveal-up">
+        <span class="section-tag">// 02 — WHAT I USE</span>
+        <h2 class="section-title">Tech Arsenal</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card reveal-up" style="--d:0s">
+          <div class="skill-card-inner">
+            <div class="skill-icon-wrap primary-glow"><span class="skill-icon-txt">LUA</span></div>
+            <div class="skill-info"><h3 class="skill-name">Lua</h3><span class="skill-level primary">Expert</span></div>
+          </div>
+          <p class="skill-desc">Game scripting, OOP architecture, event-driven systems, performance optimization for real-time games.</p>
+          <div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill primary-fill" data-pct="92"></div></div><span class="skill-pct">92%</span></div>
+          <div class="skill-chips"><span>Roblox Studio</span><span>Game Systems</span><span>OOP</span><span>Performance</span></div>
+        </div>
+        <div class="skill-card reveal-up" style="--d:0.12s">
+          <div class="skill-card-inner">
+            <div class="skill-icon-wrap secondary-glow"><span class="skill-icon-txt" style="color:var(--secondary)">JS</span></div>
+            <div class="skill-info"><h3 class="skill-name">JavaScript</h3><span class="skill-level secondary">Advanced</span></div>
+          </div>
+          <p class="skill-desc">Full stack web development — Node.js backends, React/vanilla frontends, Canvas/WebGL, REST APIs.</p>
+          <div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill secondary-fill" data-pct="88"></div></div><span class="skill-pct">88%</span></div>
+          <div class="skill-chips"><span>Node.js</span><span>React</span><span>Canvas</span><span>APIs</span><span>WebSockets</span></div>
+        </div>
+        <div class="skill-card reveal-up" style="--d:0.24s">
+          <div class="skill-card-inner">
+            <div class="skill-icon-wrap tertiary-glow"><span class="skill-icon-txt" style="color:var(--tertiary)">PY</span></div>
+            <div class="skill-info"><h3 class="skill-name">Python</h3><span class="skill-level tertiary">Proficient</span></div>
+          </div>
+          <p class="skill-desc">Backend development, automation scripts, data processing, Discord bots, tooling pipelines.</p>
+          <div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill tertiary-fill" data-pct="80"></div></div><span class="skill-pct">80%</span></div>
+          <div class="skill-chips"><span>Automation</span><span>Bots</span><span>Backend</span><span>Scripting</span></div>
+        </div>
+        <div class="skill-card reveal-up" style="--d:0.36s">
+          <div class="skill-card-inner">
+            <div class="skill-icon-wrap primary-glow"><span class="skill-icon-txt">HTML</span></div>
+            <div class="skill-info"><h3 class="skill-name">HTML/CSS</h3><span class="skill-level primary">Expert</span></div>
+          </div>
+          <p class="skill-desc">Semantic HTML, modern CSS (Flexbox, Grid, animations), responsive design, accessibility.</p>
+          <div class="skill-bar-wrap"><div class="skill-bar"><div class="skill-fill primary-fill" data-pct="95"></div></div><span class="skill-pct">95%</span></div>
+          <div class="skill-chips"><span>Semantic HTML</span><span>CSS Grid</span><span>Flexbox</span><span>Animations</span><span>Responsive</span></div>
+        </div>
+      </div>
+      <div class="also-know reveal-up">
+        <span class="also-label">Also wielding:</span>
+        <div class="also-chips">
+          <span>TypeScript</span><span>Git</span><span>REST APIs</span>
+          <span>WebSockets</span><span>SQL</span><span>Linux CLI</span><span>Three.js</span><span>Canvas API</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE DEMOS -->
+  <section class="projects" id="demos">
+    <div class="section-wrap">
+      <div class="section-header reveal-up">
+        <span class="section-tag">// 03 — INTERACTIVE DEMOS</span>
+        <h2 class="section-title">Things I Built</h2>
+        <p class="section-sub">Click any card to run a live demo — real working code</p>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card reveal-up" style="--d:0s">
+          <div class="proj-preview snake-preview-bg">
+            <canvas id="snakeThumb" width="300" height="170"></canvas>
+            <div class="proj-overlay">
+              <button class="proj-play-btn" onclick="openDemo('snake')">▶ PLAY SNAKE</button>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-tags"><span class="pt primary">JavaScript</span><span class="pt">Canvas API</span><span class="pt">Game Logic</span></div>
+            <h3 class="proj-name">Neon Snake</h3>
+            <p class="proj-desc">Classic snake rebuilt with neon glow, smooth movement, escalating speed, particles. Pure Canvas &amp; JS.</p>
+            <button class="proj-btn" onclick="openDemo('snake')"><span>▶</span> Play Now</button>
+          </div>
+        </div>
+
+        <div class="project-card reveal-up" style="--d:0.13s">
+          <div class="proj-preview particles-preview-bg">
+            <canvas id="partThumb" width="300" height="170"></canvas>
+            <div class="proj-overlay">
+              <button class="proj-play-btn secondary-btn" onclick="openDemo('particles')">⚡ LAUNCH</button>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-tags"><span class="pt secondary">JavaScript</span><span class="pt">Physics</span><span class="pt">Canvas API</span></div>
+            <h3 class="proj-name">Particle Forge</h3>
+            <p class="proj-desc">Real-time physics sandbox. Click or drag to spawn particle bursts with gravity, drag, and color blending.</p>
+            <button class="proj-btn secondary-proj-btn" onclick="openDemo('particles')"><span>⚡</span> Launch</button>
+          </div>
+        </div>
+
+        <div class="project-card reveal-up" style="--d:0.26s">
+          <div class="proj-preview terminal-preview-bg">
+            <div class="term-thumb">
+              <div class="tt-line"><span class="tt-prompt">›</span> help()</div>
+              <div class="tt-line tt-out">Commands: about, skills, contact...</div>
+              <div class="tt-line"><span class="tt-prompt">›</span> <span class="tt-blink">█</span></div>
+            </div>
+            <div class="proj-overlay">
+              <button class="proj-play-btn tertiary-btn" onclick="openDemo('terminal')">$_ OPEN REPL</button>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-tags"><span class="pt tertiary">JavaScript</span><span class="pt">REPL</span><span class="pt">Live Eval</span></div>
+            <h3 class="proj-name">JS Terminal</h3>
+            <p class="proj-desc">Live JavaScript REPL. Type any valid JS and run it. Built-in commands, history, tab autocomplete.</p>
+            <button class="proj-btn tertiary-proj-btn" onclick="openDemo('terminal')"><span>$_</span> Open Terminal</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WEBSITE SHOWCASE -->
+  <section class="showcase" id="showcase">
+    <div class="section-wrap">
+      <div class="section-header reveal-up">
+        <span class="section-tag">// 04 — WEBSITE SHOWCASE</span>
+        <h2 class="section-title">Example Site Templates</h2>
+        <p class="section-sub">These are example sites — not real businesses. Just demonstrating what I can build.</p>
+      </div>
+      <div class="showcase-grid">
+
+        <div class="showcase-card reveal-up" style="--d:0s" onclick="openSite('band')">
+          <div class="showcase-preview band-preview">
+            <div class="sp-mockup">
+              <div class="sp-bar"><div class="sp-dot"></div><div class="sp-dot"></div><div class="sp-dot"></div></div>
+              <div class="sp-screen band-screen">
+                <div class="band-logo-preview">SC</div>
+                <div class="band-tagline">ALT-ROCK · NORTH LONDON</div>
+                <div class="sp-nav-row">
+                  <span>Home</span><span>Members</span><span>Releases</span><span>Shows</span>
+                </div>
+              </div>
+            </div>
+            <div class="sc-overlay">
+              <button class="sc-open-btn">↗ OPEN SITE</button>
+              <span class="sc-pages-label">4 pages inside</span>
+            </div>
+          </div>
+          <div class="showcase-body">
+            <div class="sc-tags"><span class="pt primary">Band / Music</span><span class="pt">Multi-Page</span></div>
+            <h3 class="sc-name">Scratch Cat — Alt-Rock Band</h3>
+            <p class="sc-desc">North London alt-rock band site with members, releases, and live shows. Dark purple aesthetic.</p>
+            <div class="sc-pages">
+              <span class="sc-page">🏠 Home</span>
+              <span class="sc-page">👥 Members</span>
+              <span class="sc-page">🎵 Releases</span>
+              <span class="sc-page">🎫 Shows</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-card reveal-up" style="--d:0.15s" onclick="openSite('salon')">
+          <div class="showcase-preview salon-preview">
+            <div class="sp-mockup">
+              <div class="sp-bar"><div class="sp-dot"></div><div class="sp-dot"></div><div class="sp-dot"></div></div>
+              <div class="sp-screen salon-screen">
+                <div class="salon-logo-preview">LUMINA</div>
+                <div class="salon-tagline">PREMIUM HAIR STUDIO</div>
+                <div class="sp-nav-row" style="border-color:rgba(184,147,90,0.3);color:rgba(184,147,90,0.7)">
+                  <span>Home</span><span>Services</span><span>Gallery</span><span>Book</span>
+                </div>
+              </div>
+            </div>
+            <div class="sc-overlay salon-overlay">
+              <button class="sc-open-btn salon-btn">↗ OPEN SITE</button>
+              <span class="sc-pages-label">4 pages inside</span>
+            </div>
+          </div>
+          <div class="showcase-body">
+            <div class="sc-tags"><span class="pt secondary">Hair Salon</span><span class="pt">Multi-Page</span></div>
+            <h3 class="sc-name">Lumina — Hair Studio</h3>
+            <p class="sc-desc">Luxury boutique salon with services &amp; pricing, photo gallery, and a working booking form. Elegant, gold-toned design.</p>
+            <div class="sc-pages">
+              <span class="sc-page">🏠 Home</span>
+              <span class="sc-page">✂ Services</span>
+              <span class="sc-page">📸 Gallery</span>
+              <span class="sc-page">📅 Book</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-card reveal-up" style="--d:0.3s" onclick="openSite('gym')">
+          <div class="showcase-preview gym-preview">
+            <div class="sp-mockup">
+              <div class="sp-bar"><div class="sp-dot"></div><div class="sp-dot"></div><div class="sp-dot"></div></div>
+              <div class="sp-screen gym-screen">
+                <div class="gym-logo-preview">UQ</div>
+                <div class="gym-tagline">QUARTERMASTER SYSTEM</div>
+                <div class="sp-nav-row" style="border-color:rgba(255,85,0,0.3);color:rgba(255,85,0,0.7)">
+                  <span>Home</span><span>Inventory</span><span>Orders</span><span>Stats</span>
+                </div>
+              </div>
+            </div>
+            <div class="sc-overlay gym-overlay">
+              <button class="sc-open-btn gym-btn">↗ OPEN SITE</button>
+              <span class="sc-pages-label">External Site</span>
+            </div>
+          </div>
+          <div class="showcase-body">
+            <div class="sc-tags"><span class="pt tertiary">Roblox Game</span><span class="pt">Management System</span></div>
+            <h3 class="sc-name">Unknowns Quartermaster</h3>
+            <p class="sc-desc">In-game inventory and order management system for the Unknowns group. Track items, manage orders, and view analytics.</p>
+            <div class="sc-pages">
+              <span class="sc-page">🏠 Home</span>
+              <span class="sc-page">📦 Inventory</span>
+              <span class="sc-page">📋 Orders</span>
+              <span class="sc-page">📊 Stats</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ROBLOX -->
+  <section class="roblox" id="roblox">
+    <div class="section-wrap">
+      <div class="section-header reveal-up">
+        <span class="section-tag">// 05 — WHERE IT STARTED</span>
+        <h2 class="section-title">Roblox Legacy</h2>
+      </div>
+      <div class="roblox-layout">
+        <div class="roblox-card reveal-left">
+          <div class="roblox-profile-head">
+            <div class="rbx-avatar"><div class="rbx-ring"></div><span class="rbx-initials">TW</span></div>
+            <div>
+              <h3 class="rbx-uname">@truwty</h3>
+              <div class="rbx-badges"><span class="rbx-badge">DEVELOPER</span><span class="rbx-badge rbx-badge-alt">INFLUENCER</span></div>
+            </div>
+          </div>
+          <div class="rbx-stats">
+            <div class="rbx-stat"><span class="rbx-stat-num" id="followerCount">—</span><span class="rbx-stat-label">Followers</span></div>
+            <div class="rbx-stat"><span class="rbx-stat-num">★★★</span><span class="rbx-stat-label">Reputation</span></div>
+            <div class="rbx-stat"><span class="rbx-stat-num">Dev</span><span class="rbx-stat-label">Genre</span></div>
+          </div>
+          <p class="rbx-story">Built and shipped multiple Roblox games, growing 12,000+ organic followers through demonstrated skill, quality architecture, and community influence in the developer genre.</p>
+          <a href="https://www.roblox.com/users/8310005469/profile" target="_blank" rel="noopener" class="rbx-link">View Roblox Profile <span>→</span></a>
+        </div>
+        <div class="roblox-achievements reveal-right">
+          <div class="achievement"><div class="ach-icon">🎮</div><div><h4>Roblox Game Developer</h4><p>Designed and shipped full game systems — complex Lua architecture, custom physics, multiplayer systems.</p></div></div>
+          <div class="achievement"><div class="ach-icon">👥</div><div><h4>12,000+ Followers</h4><p>Grew an organic following through quality output, knowledge sharing, and genuine community engagement.</p></div></div>
+          <div class="achievement"><div class="ach-icon">🧠</div><div><h4>Community Influence</h4><p>Known within the Roblox dev community for technical expertise, clean code, and guiding other developers.</p></div></div>
+          <div class="achievement"><div class="ach-icon">⚡</div><div><h4>Foundation That Scales</h4><p>Everything learned building games — performance, UX, systems design — directly informs every project today.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-wrap">
+      <div class="section-header reveal-up">
+        <span class="section-tag">// 06 — LET'S TALK</span>
+        <h2 class="section-title">Let's Build Something</h2>
+        <p class="section-sub">Open for freelance work, collabs, and interesting projects</p>
+      </div>
+      <div class="contact-cards">
+        <div class="contact-card email-card reveal-up" id="emailCard" onclick="copyEmail()">
+          <div class="cc-icon">✉</div>
+          <div class="cc-info"><span class="cc-type">Email</span><span class="cc-val">truwty1@gmail.com</span></div>
+          <span class="cc-hint" id="copyHint">Click to copy</span>
+          <div class="cc-glow"></div>
+        </div>
+        <div class="contact-card discord-card reveal-up" style="--d:0.1s">
+          <div class="cc-icon">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.001.022.015.04.037.05a19.91 19.91 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+          </div>
+          <div class="cc-info"><span class="cc-type">Discord</span><span class="cc-val">truwty</span></div>
+          <span class="cc-hint">Add me</span>
+          <div class="cc-glow discord-glow"></div>
+        </div>
+        <div class="contact-card tiktok-card reveal-up" style="--d:0.2s">
+          <div class="cc-icon">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+          </div>
+          <div class="cc-info"><span class="cc-type">TikTok</span><span class="cc-val">@truwty</span></div>
+          <span class="cc-hint">Follow me</span>
+          <div class="cc-glow tiktok-glow"></div>
+        </div>
+        <div class="contact-card instagram-card reveal-up" style="--d:0.3s">
+          <div class="cc-icon">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </div>
+          <div class="cc-info"><span class="cc-type">Instagram</span><span class="cc-val">@truw08</span></div>
+          <span class="cc-hint">Follow me</span>
+          <div class="cc-glow instagram-glow"></div>
+        </div>
+      </div>
+      <p class="contact-note reveal-up">Got a project idea? Want to collaborate? Just want to talk code? Hit me up — I'm always down for something interesting.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-logo">&lt;TW/&gt;</span>
+      <p class="footer-copy">Designed &amp; Built by Truwty · <span id="footerYear"></span></p>
+      <p class="footer-made">Crafted with <span class="hl">JavaScript</span> &amp; a <span class="hl">Lua heart</span></p>
+    </div>
+  </footer>
+
+  <!-- DEMO MODAL (Snake / Particles / Terminal) -->
+  <div class="modal-overlay" id="demoOverlay">
+    <div class="modal-box demo-modal-box" id="demoBox">
+      <button class="modal-close" id="demoClose">✕</button>
+      <div class="modal-content" id="demoContent"></div>
+    </div>
+  </div>
+
+  <!-- SITE MODAL (iframe full-screen) -->
+  <div class="site-overlay" id="siteOverlay">
+    <div class="site-modal">
+      <div class="site-modal-header">
+        <span class="site-modal-title" id="siteModalTitle">Website Preview</span>
+        <div class="site-modal-actions">
+          <span class="site-modal-hint">Fully interactive — explore all tabs!</span>
+          <button class="site-close-btn" id="siteClose">✕ Close</button>
+        </div>
+      </div>
+      <div class="site-frame-wrap">
+        <iframe id="siteFrame" src="" title="Site Preview" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
