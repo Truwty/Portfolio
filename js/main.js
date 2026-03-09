@@ -650,6 +650,14 @@ const siteMap = {
 
 function openSite(key) {
   const s = siteMap[key]; if(!s) return;
+  
+  // For external sites, open in new tab
+  if (s.external) {
+    window.open(s.file, '_blank');
+    return;
+  }
+  
+  // For local sites, use iframe modal
   siteFrame.src = s.file;
   siteTitle.textContent = s.title;
   siteOverlay.classList.add('open');
