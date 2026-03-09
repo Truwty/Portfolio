@@ -34,6 +34,7 @@ function initAll() {
   fetchFollowers();
   initNav();
   document.getElementById('footerYear').textContent = new Date().getFullYear();
+  document.getElementById('footerYear2').textContent = new Date().getFullYear();
 }
 
 /* ─── THREE.JS HERO ──────────────────────────────────────────────── */
@@ -643,9 +644,7 @@ const siteTitle   = document.getElementById('siteModalTitle');
 const siteClose   = document.getElementById('siteClose');
 
 const siteMap = {
-  band:   { file:'sites/band.html',  title:'Scratch Cat — Alt-Rock Band' },
-  salon:  { file:'sites/salon.html', title:'Lumina — Hair Studio Website' },
-  gym:    { file:'https://truwty.github.io/Unknowns-Quatermaster-Site/index.html', title:'Unknowns Quartermaster', external:true }
+  band:   { file:'https://truwty.github.io/Scratch-Cat/', title:'Scratch Cat — Alt-Rock Band', external:true }
 };
 
 function openSite(key) {

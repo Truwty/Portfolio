@@ -334,6 +334,9 @@ canvas{display:block}
 .footer-logo{font-family:var(--ff-display);font-size:20px;font-weight:700;color:var(--primary);letter-spacing:3px}
 .footer-copy{font-size:14px;color:var(--muted)}
 .footer-made{font-family:var(--ff-code);font-size:13px;color:var(--muted)}
+.footer-legal{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1)}
+.legal-text{font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:8px;max-width:600px}
+.legal-text strong{color:var(--text)}
 
 /* DEMO MODAL */
 .modal-overlay{position:fixed;inset:0;z-index:5000;background:rgba(2,2,8,0.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity 0.4s,visibility 0.4s;padding:20px}
